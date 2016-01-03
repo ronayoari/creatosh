@@ -10,8 +10,7 @@
         body { font-family: Verdana; font-size: 12px; }
         h1 { font-size:x-large; font-weight:bold; }
         h2 { font-size:large; font-weight:bold; }
-        img { margin:2em;
-        }
+        img { width:200px; height:175px; margin:2em;}
         li { list-style: none; }
         ul { padding:1em; }
         

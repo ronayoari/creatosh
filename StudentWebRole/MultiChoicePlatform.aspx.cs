@@ -65,7 +65,7 @@ namespace StudentWebRole
                 imageFile1.PostedFile.ContentType,
                 imageFile1.PostedFile.InputStream
                 );
-                message += ", ";
+                message += ",";
                 message += this.SaveImage(
                 Guid.NewGuid().ToString(),
                 "user",

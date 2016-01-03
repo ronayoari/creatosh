@@ -35,7 +35,6 @@
                 <li><span>Incorrect Answer</span><asp:TextBox ID="wrongAnswer1" runat="server"/></li>
                 <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer2" runat="server"/></li>
                 <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer3" runat="server"/></li>
-                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer4" runat="server"/></li>
             </ul>
             <asp:Button ID="upload" runat="server" onclick="upload_Click" Text="Publish" />
         </div>

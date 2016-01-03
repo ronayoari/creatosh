@@ -60,7 +60,6 @@ namespace StudentWebRole
                 wrongAnswer1.Text,
                 wrongAnswer2.Text,
                 wrongAnswer3.Text,
-                wrongAnswer4.Text,
                 imageFile.PostedFile.ContentType,
                 imageFile.PostedFile.InputStream
                 );
@@ -175,25 +174,7 @@ namespace StudentWebRole
             images.DataBind();
         }
 
-        private void SaveImage(string id, string name, string description, string tags, string fileName, string contentType, Stream fiileStream)
-        {
-            // Create a blob in container and upload image bytes to it
-            var blob = this.GetContainer().GetBlockBlobReference(name);
-            blob.Properties.ContentType = contentType;
-            // Create some metadata for this image
-            blob.Metadata.Add("Id", id);
-            blob.Metadata.Add("Filename", fileName);
-            blob.Metadata.Add("ImageName", String.IsNullOrEmpty(name) ? "unknown" : name);
-            blob.Metadata.Add("Description", String.IsNullOrEmpty(description) ? "unknown" : description);
-            blob.Metadata.Add("Tags", String.IsNullOrEmpty(tags) ? "unknown" : tags);
-
-            blob.UploadFromStream(fiileStream);
-            blob.SetMetadata();
-            //send to queue 
-            sendToQueue(name);
-        }
-
-        private void SaveImage(string id, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3, string incorrectAnswer4, string contentType, Stream fiileStream)
+        private void SaveImage(string id, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3, string contentType, Stream fiileStream)
         {
             // Create a blob in container and upload image bytes to it
             var blob = this.GetContainer().GetBlockBlobReference(correctAnswer);
@@ -204,12 +185,11 @@ namespace StudentWebRole
             blob.Metadata.Add("IncorrectAnswer1", String.IsNullOrEmpty(incorrectAnswer1) ? "unknown" : incorrectAnswer1);
             blob.Metadata.Add("IncorrectAnswer2", String.IsNullOrEmpty(incorrectAnswer2) ? "unknown" : incorrectAnswer2);
             blob.Metadata.Add("IncorrectAnswer3", String.IsNullOrEmpty(incorrectAnswer3) ? "unknown" : incorrectAnswer3);
-            blob.Metadata.Add("IncorrectAnswer4", String.IsNullOrEmpty(incorrectAnswer4) ? "unknown" : incorrectAnswer4);
 
             blob.UploadFromStream(fiileStream);
             blob.SetMetadata();
             //send to queue 
-            //sendToQueue(correctAnswer);
+            sendToQueue(correctAnswer);
         }
 
         #endregion

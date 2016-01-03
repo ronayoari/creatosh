@@ -31,49 +31,94 @@ namespace StudentWebRole {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// imageFile control.
+        /// imageFile1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload imageFile;
+        protected global::System.Web.UI.WebControls.FileUpload imageFile1;
         
         /// <summary>
-        /// correctAnswer control.
+        /// correctAnswer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox correctAnswer;
+        protected global::System.Web.UI.WebControls.TextBox correctAnswer1;
         
         /// <summary>
-        /// wrongAnswer1 control.
+        /// wrongAnswer11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox wrongAnswer1;
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer11;
         
         /// <summary>
-        /// wrongAnswer2 control.
+        /// wrongAnswer21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox wrongAnswer2;
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer21;
         
         /// <summary>
-        /// wrongAnswer3 control.
+        /// wrongAnswer31 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox wrongAnswer3;
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer31;
+        
+        /// <summary>
+        /// imageFile2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload imageFile2;
+        
+        /// <summary>
+        /// correctAnswer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox correctAnswer2;
+        
+        /// <summary>
+        /// wrongAnswer12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer12;
+        
+        /// <summary>
+        /// wrongAnswer22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer22;
+        
+        /// <summary>
+        /// wrongAnswer32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox wrongAnswer32;
         
         /// <summary>
         /// upload control.

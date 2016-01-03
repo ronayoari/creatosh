@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Creatosh DB SQL" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=xp4uloaxbq.database.windows.net;Initial Catalog=&quot;Creatosh DB SQL&quot;;Persist Security Info=True;User ID=creatosh" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Creatosh_DB_SQLConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Activities" Member="Activities">
+    <Type Name="Activity">
+      <Column Name="game_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_ID_send" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_ID_receive" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Association Name="Game_Activity" Member="Game" ThisKey="game_ID" OtherKey="game_ID" Type="Game" IsForeignKey="true" />
+      <Association Name="User_Activity" Member="User" ThisKey="user_ID_receive" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Activity1" Member="User1" ThisKey="user_ID_send" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories" Member="Categories">
+    <Type Name="Category">
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Category_Category_In_Subject" Member="Category_In_Subjects" ThisKey="name" OtherKey="categoryName" Type="Category_In_Subject" />
+      <Association Name="Category_Game" Member="Games" ThisKey="name" OtherKey="category" Type="Game" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category_In_Subject" Member="Category_In_Subjects">
+    <Type Name="Category_In_Subject">
+      <Column Name="categoryName" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="subjectName" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Category_Category_In_Subject" Member="Category" ThisKey="categoryName" OtherKey="name" Type="Category" IsForeignKey="true" />
+      <Association Name="Subject_Category_In_Subject" Member="Subject" ThisKey="subjectName" OtherKey="name" Type="Subject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class" Member="Classes">
+    <Type Name="Class">
+      <Column Name="school_name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="grade_level" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Class_Student_In_Class" Member="Student_In_Classes" ThisKey="school_name,grade_level,name" OtherKey="school_name,grade_level,class_name" Type="Student_In_Class" />
+      <Association Name="Class_Teacher_In_Class" Member="Teacher_In_Classes" ThisKey="school_name,grade_level,name" OtherKey="school_name,grade_level,class_name" Type="Teacher_In_Class" />
+      <Association Name="Grade_Level_Class" Member="Grade_Level1" ThisKey="school_name,grade_level" OtherKey="school_name,level" Type="Grade_Level" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comments" Member="Comments">
+    <Type Name="Comment">
+      <Column Name="comment_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="game_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Auther_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="body" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Game_Comment" Member="Game" ThisKey="game_ID" OtherKey="game_ID" Type="Game" IsForeignKey="true" />
+      <Association Name="User_Comment" Member="User" ThisKey="Auther_ID" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Game" Member="Games">
+    <Type Name="Game">
+      <Column Name="game_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="publish_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="creator_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="amount_of_likes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="grade_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="category" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="teacher_comment" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="subject_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Game_Activity" Member="Activities" ThisKey="game_ID" OtherKey="game_ID" Type="Activity" />
+      <Association Name="Game_Comment" Member="Comments" ThisKey="game_ID" OtherKey="game_ID" Type="Comment" />
+      <Association Name="Category_Game" Member="Category1" ThisKey="category" OtherKey="name" Type="Category" IsForeignKey="true" />
+      <Association Name="Subject_Game" Member="Subject" ThisKey="subject_name" OtherKey="name" Type="Subject" IsForeignKey="true" />
+      <Association Name="User_Game" Member="User" ThisKey="creator_ID" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Grade_Level" Member="Grade_Levels">
+    <Type Name="Grade_Level">
+      <Column Name="school_name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Grade_Level_Class" Member="Classes" ThisKey="school_name,level" OtherKey="school_name,grade_level" Type="Class" />
+      <Association Name="School_Grade_Level" Member="School" ThisKey="school_name" OtherKey="name" Type="School" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Metrics_Rating" Member="Metrics_Ratings">
+    <Type Name="Metrics_Rating">
+      <Column Name="subject_name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="measure" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Subject_Metrics_Rating" Member="Subject" ThisKey="subject_name" OtherKey="name" Type="Subject" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.School" Member="Schools">
+    <Type Name="School">
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="School_Grade_Level" Member="Grade_Levels" ThisKey="name" OtherKey="school_name" Type="Grade_Level" />
+      <Association Name="School_System_Administor" Member="System_Administors" ThisKey="name" OtherKey="school_name" Type="System_Administor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student_In_Class" Member="Student_In_Classes">
+    <Type Name="Student_In_Class">
+      <Column Name="user_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="school_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="grade_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="class_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Student_In_Class" Member="Class" ThisKey="school_name,grade_level,class_name" OtherKey="school_name,grade_level,name" Type="Class" IsForeignKey="true" />
+      <Association Name="User_Student_In_Class" Member="User" ThisKey="user_ID" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subject" Member="Subjects">
+    <Type Name="Subject">
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Subject_Category_In_Subject" Member="Category_In_Subjects" ThisKey="name" OtherKey="subjectName" Type="Category_In_Subject" />
+      <Association Name="Subject_Game" Member="Games" ThisKey="name" OtherKey="subject_name" Type="Game" />
+      <Association Name="Subject_Metrics_Rating" Member="Metrics_Ratings" ThisKey="name" OtherKey="subject_name" Type="Metrics_Rating" />
+    </Type>
+  </Table>
+  <Table Name="dbo.System_Administor" Member="System_Administors">
+    <Type Name="System_Administor">
+      <Column Name="school_name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="user_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="School_System_Administor" Member="School" ThisKey="school_name" OtherKey="name" Type="School" IsForeignKey="true" />
+      <Association Name="User_System_Administor" Member="User" ThisKey="user_ID" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teacher_In_Class" Member="Teacher_In_Classes">
+    <Type Name="Teacher_In_Class">
+      <Column Name="user_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="subject" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="school_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="grade_level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="class_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Teacher_In_Class" Member="Class" ThisKey="school_name,grade_level,class_name" OtherKey="school_name,grade_level,name" Type="Class" IsForeignKey="true" />
+      <Association Name="User_Teacher_In_Class" Member="User" ThisKey="user_ID" OtherKey="user_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type_of_users" Member="Type_of_users">
+    <Type Name="Type_of_user">
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Type_of_user_User" Member="Users" ThisKey="name" OtherKey="type" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="user_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="activities_Num" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Activity" Member="Activities" ThisKey="user_ID" OtherKey="user_ID_receive" Type="Activity" />
+      <Association Name="User_Activity1" Member="Activities1" ThisKey="user_ID" OtherKey="user_ID_send" Type="Activity" />
+      <Association Name="User_Comment" Member="Comments" ThisKey="user_ID" OtherKey="Auther_ID" Type="Comment" />
+      <Association Name="User_Game" Member="Games" ThisKey="user_ID" OtherKey="creator_ID" Type="Game" />
+      <Association Name="User_Student_In_Class" Member="Student_In_Class" ThisKey="user_ID" OtherKey="user_ID" Type="Student_In_Class" Cardinality="One" />
+      <Association Name="User_System_Administor" Member="System_Administors" ThisKey="user_ID" OtherKey="user_ID" Type="System_Administor" />
+      <Association Name="User_Teacher_In_Class" Member="Teacher_In_Class" ThisKey="user_ID" OtherKey="user_ID" Type="Teacher_In_Class" Cardinality="One" />
+      <Association Name="Type_of_user_User" Member="Type_of_user" ThisKey="type" OtherKey="name" Type="Type_of_user" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

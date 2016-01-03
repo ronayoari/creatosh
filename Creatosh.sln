@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "Creatosh", "Creatosh\Creatosh.ccproj", "{79DABD20-A229-459F-88DA-58FC71235F36}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateGameWorkerRole", "CreateGameWorkerRole\CreateGameWorkerRole.csproj", "{E8B196A6-0CA4-49B0-9B5F-F42E58DD25F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RankUpdaterWorkerRole", "RankUpdaterWorkerRole\RankUpdaterWorkerRole.csproj", "{7159E267-D687-4FC7-9A18-35F77F4AD245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDAL", "WebApplication1\WebDAL.csproj", "{17038D68-D719-419F-A1E1-10E424D31DC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{7159E267-D687-4FC7-9A18-35F77F4AD245}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7159E267-D687-4FC7-9A18-35F77F4AD245}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7159E267-D687-4FC7-9A18-35F77F4AD245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17038D68-D719-419F-A1E1-10E424D31DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17038D68-D719-419F-A1E1-10E424D31DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17038D68-D719-419F-A1E1-10E424D31DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17038D68-D719-419F-A1E1-10E424D31DC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

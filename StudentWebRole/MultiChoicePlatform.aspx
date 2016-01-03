@@ -10,7 +10,8 @@
         body { font-family: Verdana; font-size: 12px; }
         h1 { font-size:x-large; font-weight:bold; }
         h2 { font-size:large; font-weight:bold; }
-        img { width:200px; height:175px; margin:2em;}
+        img { margin:2em;
+        }
         li { list-style: none; }
         ul { padding:1em; }
         
@@ -30,12 +31,18 @@
         <h1>Multi Choice</h1>
         <div class="form">
             <ul>
-                <li><span>Image</span><asp:FileUpload ID="imageFile" runat="server" /></li>
-                <li><span>Correct Answer</span><asp:TextBox ID="correctAnswer" runat="server"/></li>
-                <li><span>Incorrect Answer</span><asp:TextBox ID="wrongAnswer1" runat="server"/></li>
-                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer2" runat="server"/></li>
-                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer3" runat="server"/></li>
-                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer4" runat="server"/></li>
+                <li><span>Image</span><asp:FileUpload ID="imageFile1" runat="server" /></li>
+                <li><span>Correct Answer</span><asp:TextBox ID="correctAnswer1" runat="server"/></li>
+                <li><span>Incorrect Answer</span><asp:TextBox ID="wrongAnswer11" runat="server"/></li>
+                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer21" runat="server"/></li>
+                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer31" runat="server"/></li>
+            </ul>
+            <ul>
+                <li><span>Image</span><asp:FileUpload ID="imageFile2" runat="server" /></li>
+                <li><span>Correct Answer</span><asp:TextBox ID="correctAnswer2" runat="server"/></li>
+                <li><span>Incorrect Answer</span><asp:TextBox ID="wrongAnswer12" runat="server"/></li>
+                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer22" runat="server"/></li>
+                <li><span>IncorrectAnswer</span><asp:TextBox ID="wrongAnswer32" runat="server"/></li>
             </ul>
             <asp:Button ID="upload" runat="server" onclick="upload_Click" Text="Publish" />
         </div>

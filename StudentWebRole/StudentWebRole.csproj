@@ -199,6 +199,49 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="images\arrowws.png" />
+    <Content Include="images\bann_img1.jpg" />
+    <Content Include="images\bann_img2.jpg" />
+    <Content Include="images\bann_img3.jpg" />
+    <Content Include="images\bann_img4.jpg" />
+    <Content Include="images\big1.jpg" />
+    <Content Include="images\big2.jpg" />
+    <Content Include="images\big3.jpg" />
+    <Content Include="images\big4.jpg" />
+    <Content Include="images\big5.jpg" />
+    <Content Include="images\big6.jpg" />
+    <Content Include="images\big7.jpg" />
+    <Content Include="images\big8.jpg" />
+    <Content Include="images\circ_img1.jpg" />
+    <Content Include="images\circ_img2.jpg" />
+    <Content Include="images\circ_img3.jpg" />
+    <Content Include="images\circ_img4.jpg" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\magnify.png" />
+    <Content Include="images\marker.png" />
+    <Content Include="images\page1_img1.jpg" />
+    <Content Include="images\page1_img2.jpg" />
+    <Content Include="images\page2_img1.jpg" />
+    <Content Include="images\page2_img2.jpg" />
+    <Content Include="images\page2_img3.jpg" />
+    <Content Include="images\page2_img4.jpg" />
+    <Content Include="images\page2_img5.jpg" />
+    <Content Include="images\page2_img6.jpg" />
+    <Content Include="images\page3_img1.jpg" />
+    <Content Include="images\page3_img2.jpg" />
+    <Content Include="images\page3_img3.jpg" />
+    <Content Include="images\page3_img4.jpg" />
+    <Content Include="images\page3_img5.jpg" />
+    <Content Include="images\page3_img6.jpg" />
+    <Content Include="images\page3_img7.jpg" />
+    <Content Include="images\page3_img8.jpg" />
+    <Content Include="images\page4_img1.jpg" />
+    <Content Include="images\page4_img2.jpg" />
+    <Content Include="images\page4_img3.jpg" />
+    <Content Include="images\preloader.gif" />
+    <Content Include="images\Preloader_4.gif" />
+    <Content Include="images\search_icon.png" />
+    <Content Include="images\totop.png" />
     <Content Include="MultiChoicePlatform.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -233,6 +276,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="style.css" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -416,6 +460,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

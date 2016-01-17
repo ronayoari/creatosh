@@ -195,6 +195,7 @@ namespace StudentWebRole
             blob.Properties.ContentType = contentType;
             // Create some metadata for this image
             blob.Metadata.Add("Id", id);
+            blob.Metadata.Add("Template", "MultiChoicePlatform");
             blob.Metadata.Add("Username", String.IsNullOrEmpty(user) ? "unknown" : user);
             blob.Metadata.Add("CorrectAnswer", String.IsNullOrEmpty(correctAnswer) ? "unknown" : correctAnswer);
             blob.Metadata.Add("IncorrectAnswer1", String.IsNullOrEmpty(incorrectAnswer1) ? "unknown" : incorrectAnswer1);

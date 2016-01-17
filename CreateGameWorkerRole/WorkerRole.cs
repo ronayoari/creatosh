@@ -106,6 +106,7 @@ namespace CreateGameWorkerRole
         private void HandelBlob(string msg, Image.GetThumbnailImageAbort myCallback, MemoryStream memStream)
         {
             var blob = this.GetContainer("photo").GetBlockBlobReference(msg);
+            var enume = blob.Metadata.GetEnumerator();
             blob.DownloadToStream(memStream);
 
             //create a bitmap from photo

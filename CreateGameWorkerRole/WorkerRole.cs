@@ -27,7 +27,7 @@ namespace CreateGameWorkerRole
 
             try
             {
-                //this.RunAsync(this.cancellationTokenSource.Token).Wait();
+                this.RunAsync(this.cancellationTokenSource.Token).Wait();
             }
             finally
             {
@@ -86,30 +86,42 @@ namespace CreateGameWorkerRole
                         Image.GetThumbnailImageAbort myCallback = new Image.GetThumbnailImageAbort(Callback);
                         //get photo as stream
                         MemoryStream memStream = new MemoryStream();
-                        var blob = this.GetContainer("photo").GetBlockBlobReference(msg.AsString);
-                        blob.DownloadToStream(memStream);
 
-                        //create a bitmap from photo
-                        Bitmap myBitmap = new Bitmap(memStream);
-                        //create thumbnail
-                        Image myThumbnail = myBitmap.GetThumbnailImage(
-                        40, 40, myCallback, IntPtr.Zero);
-
-
-                        var ms = new MemoryStream();
-                        myThumbnail.Save(ms, ImageFormat.Jpeg);
-
-                        // If you're going to read from the stream, you may need to reset the position to the start
-                        ms.Position = 0;
-
-                        SaveThumb(msg.AsString, ms);
-
+                        char[] delimiterChar = {','};
+                        string message = msg.AsString;
+                        string[] blobs = message.Split(delimiterChar);
+                        HandelBlob(blobs[0], myCallback, memStream);
+                        HandelBlob(blobs[1], myCallback, memStream);
                         queue.DeleteMessage(msg);
                     }
                 }
                 else
-                    Thread.Sleep(1000);
+                {
+                    //Thread.Sleep(1000);
+                    await Task.Delay(1000);
+                }
             }
+        }
+
+        private void HandelBlob(string msg, Image.GetThumbnailImageAbort myCallback, MemoryStream memStream)
+        {
+            var blob = this.GetContainer("photo").GetBlockBlobReference(msg);
+            blob.DownloadToStream(memStream);
+
+            //create a bitmap from photo
+            Bitmap myBitmap = new Bitmap(memStream);
+            //create thumbnail
+            Image myThumbnail = myBitmap.GetThumbnailImage(
+            40, 40, myCallback, IntPtr.Zero);
+
+
+            var ms = new MemoryStream();
+            myThumbnail.Save(ms, ImageFormat.Jpeg);
+
+            // If you're going to read from the stream, you may need to reset the position to the start
+            ms.Position = 0;
+
+            SaveThumb(msg, ms);
         }
 
         private CloudBlobContainer GetContainer(string type)

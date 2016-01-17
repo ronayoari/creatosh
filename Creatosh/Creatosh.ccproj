@@ -46,6 +46,14 @@
       <RoleName>CreateGameWorkerRole</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\CreatoshDAL\CreatoshDAL.csproj">
+      <Name>CreatoshDAL</Name>
+      <Project>{f1463762-bb50-40a2-a339-8fc521eda7d8}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>CreatoshDAL</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
     <ProjectReference Include="..\RankUpdaterWorkerRole\RankUpdaterWorkerRole.csproj">
       <Name>RankUpdaterWorkerRole</Name>
       <Project>{7159e267-d687-4fc7-9a18-35f77f4ad245}</Project>
@@ -73,12 +81,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CreateGameWorkerRoleContent\" />
+    <Folder Include="CreatoshDALContent\" />
     <Folder Include="RankUpdaterWorkerRoleContent\" />
     <Folder Include="StudentWebRoleContent\" />
     <Folder Include="TeacherWebRoleContent\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="CreateGameWorkerRoleContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="CreatoshDALContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="RankUpdaterWorkerRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="StudentWebRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="TeacherWebRoleContent\diagnostics.wadcfgx" />

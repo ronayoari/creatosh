@@ -53,7 +53,7 @@ namespace WCFAzureDALServiceWebRole
             }
 
             public GameSequenceEntity() { }
-
+            
             public string Template { get; set; }
         }
 

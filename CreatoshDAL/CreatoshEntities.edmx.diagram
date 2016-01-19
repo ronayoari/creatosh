@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="454b73ccef1349f0b22d7f6cf1fdbb68" Name="Diagram1">
+        <EntityTypeShape EntityType="CreatoshDBModel.Activity" Width="1.5" PointX="12.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Category" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Categories_In_Subjects" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Class" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Comment" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Game" Width="1.5" PointX="15.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Grade_Level" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Metrics_Rating" Width="1.5" PointX="15.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.School" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Subject" Width="1.5" PointX="13.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Teacher_In_Class" Width="1.5" PointX="7.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Template" Width="1.5" PointX="13.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.Type_of_users" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreatoshDBModel.User" Width="1.5" PointX="10.5" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="CreatoshDBModel.Activities_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Activities_User_Receive" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Activities_User_Send" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Categories_In_Subjects_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Categories_In_Subjects_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Class_Grade_Level" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Teacher_In_Class_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Comments_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.game_comments" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Game_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Game_Template" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Game_Templates" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Game_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Grade_Level_School" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Metrics_Rating_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Teacher_In_Class_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.User_Type_of_users" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Category_In_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Games_In_Categries" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.Student_In_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="CreatoshDBModel.System_Administor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,1428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activities">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="user_ID_send" />
+            <PropertyRef Name="user_ID_receive" />
+          </Key>
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="user_ID_send" Type="int" Nullable="false" />
+          <Property Name="user_ID_receive" Type="int" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="read" Type="int" Nullable="false" />
+          <Property Name="response" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories_In_Subjects">
+          <Key>
+            <PropertyRef Name="categoryName" />
+            <PropertyRef Name="subjectName" />
+          </Key>
+          <Property Name="categoryName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="subjectName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="school_name" />
+            <PropertyRef Name="grade_level" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="school_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="grade_level" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="comment_ID" />
+            <PropertyRef Name="game_ID" />
+          </Key>
+          <Property Name="comment_ID" Type="int" Nullable="false" />
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="Auther_ID" Type="int" Nullable="false" />
+          <Property Name="body" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="game_ID" />
+          </Key>
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="publish_date" Type="date" Nullable="false" />
+          <Property Name="creator_ID" Type="int" Nullable="false" />
+          <Property Name="amount_of_likes" Type="int" Nullable="false" />
+          <Property Name="grade_level" Type="int" Nullable="false" />
+          <Property Name="template_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="teacher_comment" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="subject_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="Game_In_Category">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="categoriesName" />
+          </Key>
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="categoriesName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Games_Categories">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="categoriesName" />
+          </Key>
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="categoriesName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade_Level">
+          <Key>
+            <PropertyRef Name="school_name" />
+            <PropertyRef Name="level" />
+          </Key>
+          <Property Name="school_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Measures_Values_In_Game">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="subject_name" />
+            <PropertyRef Name="measure" />
+          </Key>
+          <Property Name="game_ID" Type="int" Nullable="false" />
+          <Property Name="subject_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="measure" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Metrics_Rating">
+          <Key>
+            <PropertyRef Name="subject_name" />
+            <PropertyRef Name="measure" />
+          </Key>
+          <Property Name="subject_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="measure" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="measrue_percent" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student_In_Class">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="school_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="grade_level" Type="int" Nullable="false" />
+          <Property Name="class_name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="System_Administor">
+          <Key>
+            <PropertyRef Name="school_name" />
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="school_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher_In_Class">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="subject" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="school_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="grade_level" Type="int" Nullable="false" />
+          <Property Name="class_name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Templates">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type_of_users">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="activities_Num" Type="int" Nullable="false" />
+          <Property Name="online" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Activities_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activities_User_Receive">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="user_ID_receive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activities_User_Send">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="user_ID_send" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categories_In_Subjects_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Categories_In_Subjects" Type="Self.Categories_In_Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Categories_In_Subjects">
+              <PropertyRef Name="subjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categories_In_Subjects_Subjects">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Categories_In_Subjects" Type="Self.Categories_In_Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Categories_In_Subjects">
+              <PropertyRef Name="subjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Class_Grade_Level">
+          <End Role="Grade_Level" Type="Self.Grade_Level" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade_Level">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="level" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Comments_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Auther_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="game_comments">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_In_Category_catigory">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Game_In_Category" Type="Self.Game_In_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game_In_Category">
+              <PropertyRef Name="categoriesName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_In_Category_gameID">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Game_In_Category" Type="Self.Game_In_Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Game_In_Category">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Subject">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Template">
+          <End Role="Templates" Type="Self.Templates" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="template_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Templates">
+          <End Role="Templates" Type="Self.Templates" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="template_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="creator_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Games_Categories_catigory">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Games_Categories" Type="Self.Games_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Games_Categories">
+              <PropertyRef Name="categoriesName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Games_Categories_gameID">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Games_Categories" Type="Self.Games_Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Games_Categories">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Grade_Level_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="Grade_Level" Type="Self.Grade_Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Grade_Level">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Measures_Values_In_Game_gameID">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Measures_Values_In_Game" Type="Self.Measures_Values_In_Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Measures_Values_In_Game">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Measures_Values_In_Game_subject_masure">
+          <End Role="Metrics_Rating" Type="Self.Metrics_Rating" Multiplicity="1" />
+          <End Role="Measures_Values_In_Game" Type="Self.Measures_Values_In_Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metrics_Rating">
+              <PropertyRef Name="subject_name" />
+              <PropertyRef Name="measure" />
+            </Principal>
+            <Dependent Role="Measures_Values_In_Game">
+              <PropertyRef Name="subject_name" />
+              <PropertyRef Name="measure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Metrics_Rating_Subject">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Metrics_Rating" Type="Self.Metrics_Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Metrics_Rating">
+              <PropertyRef Name="subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Student_In_Class_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Student_In_Class" Type="Self.Student_In_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Student_In_Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="class_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="System_Administor_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="System_Administor" Type="Self.System_Administor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="System_Administor">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="System_Administor_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="System_Administor" Type="Self.System_Administor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="System_Administor">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="class_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_Subject">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_In_Class_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Student_In_Class" Type="Self.Student_In_Class" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Student_In_Class">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Type_of_users">
+          <End Role="Type_of_users" Type="Self.Type_of_users" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_users">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories_In_Subjects" EntityType="Self.Categories_In_Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game_In_Category" EntityType="Self.Game_In_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games_Categories" EntityType="Self.Games_Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade_Level" EntityType="Self.Grade_Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Measures_Values_In_Game" EntityType="Self.Measures_Values_In_Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Metrics_Rating" EntityType="Self.Metrics_Rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_In_Class" EntityType="Self.Student_In_Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="System_Administor" EntityType="Self.System_Administor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher_In_Class" EntityType="Self.Teacher_In_Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Templates" EntityType="Self.Templates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_of_users" EntityType="Self.Type_of_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Activities_Game" Association="Self.Activities_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Activities_User_Receive" Association="Self.Activities_User_Receive">
+            <End Role="User" EntitySet="User" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Activities_User_Send" Association="Self.Activities_User_Send">
+            <End Role="User" EntitySet="User" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Categories_In_Subjects_Categories" Association="Self.Categories_In_Subjects_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories_In_Subjects" EntitySet="Categories_In_Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="Categories_In_Subjects_Subjects" Association="Self.Categories_In_Subjects_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Categories_In_Subjects" EntitySet="Categories_In_Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="Class_Grade_Level" Association="Self.Class_Grade_Level">
+            <End Role="Grade_Level" EntitySet="Grade_Level" />
+            <End Role="Class" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="Comments_User" Association="Self.Comments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="game_comments" Association="Self.game_comments">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="Game_In_Category_catigory" Association="Self.Game_In_Category_catigory">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Game_In_Category" EntitySet="Game_In_Category" />
+          </AssociationSet>
+          <AssociationSet Name="Game_In_Category_gameID" Association="Self.Game_In_Category_gameID">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Game_In_Category" EntitySet="Game_In_Category" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Subject" Association="Self.Game_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Template" Association="Self.Game_Template">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Templates" Association="Self.Game_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="Game_User" Association="Self.Game_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="Games_Categories_catigory" Association="Self.Games_Categories_catigory">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Games_Categories" EntitySet="Games_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="Games_Categories_gameID" Association="Self.Games_Categories_gameID">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Games_Categories" EntitySet="Games_Categories" />
+          </AssociationSet>
+          <AssociationSet Name="Grade_Level_School" Association="Self.Grade_Level_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="Grade_Level" EntitySet="Grade_Level" />
+          </AssociationSet>
+          <AssociationSet Name="Measures_Values_In_Game_gameID" Association="Self.Measures_Values_In_Game_gameID">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Measures_Values_In_Game" EntitySet="Measures_Values_In_Game" />
+          </AssociationSet>
+          <AssociationSet Name="Measures_Values_In_Game_subject_masure" Association="Self.Measures_Values_In_Game_subject_masure">
+            <End Role="Metrics_Rating" EntitySet="Metrics_Rating" />
+            <End Role="Measures_Values_In_Game" EntitySet="Measures_Values_In_Game" />
+          </AssociationSet>
+          <AssociationSet Name="Metrics_Rating_Subject" Association="Self.Metrics_Rating_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Metrics_Rating" EntitySet="Metrics_Rating" />
+          </AssociationSet>
+          <AssociationSet Name="Student_In_Class_Class" Association="Self.Student_In_Class_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Student_In_Class" EntitySet="Student_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="System_Administor_School" Association="Self.System_Administor_School">
+            <End Role="School" EntitySet="School" />
+            <End Role="System_Administor" EntitySet="System_Administor" />
+          </AssociationSet>
+          <AssociationSet Name="System_Administor_User" Association="Self.System_Administor_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="System_Administor" EntitySet="System_Administor" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_Class" Association="Self.Teacher_In_Class_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_Subject" Association="Self.Teacher_In_Class_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_User" Association="Self.Teacher_In_Class_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="User_In_Class_User" Association="Self.User_In_Class_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Student_In_Class" EntitySet="Student_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="User_Type_of_users" Association="Self.User_Type_of_users">
+            <End Role="Type_of_users" EntitySet="Type_of_users" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="user_ID_send" />
+            <PropertyRef Name="user_ID_receive" />
+          </Key>
+          <Property Name="game_ID" Type="Int32" Nullable="false" />
+          <Property Name="user_ID_send" Type="Int32" Nullable="false" />
+          <Property Name="user_ID_receive" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="read" Type="Int32" Nullable="false" />
+          <Property Name="response" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.Activities_Game" FromRole="Activities" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="Self.Activities_User_Receive" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.Activities_User_Send" FromRole="Activities" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Categories_In_Subjects" Relationship="Self.Categories_In_Subjects_Categories" FromRole="Categories" ToRole="Categories_In_Subjects" />
+          <NavigationProperty Name="Games" Relationship="Self.Game_In_Category" FromRole="Categories" ToRole="Game" />
+          <NavigationProperty Name="Games1" Relationship="Self.Games_Categories" FromRole="Categories" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Categories_In_Subjects">
+          <Key>
+            <PropertyRef Name="categoryName" />
+            <PropertyRef Name="subjectName" />
+          </Key>
+          <Property Name="categoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="Self.Categories_In_Subjects_Categories" FromRole="Categories_In_Subjects" ToRole="Categories" />
+          <NavigationProperty Name="Subject" Relationship="Self.Categories_In_Subjects_Subjects" FromRole="Categories_In_Subjects" ToRole="Subjects" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="school_name" />
+            <PropertyRef Name="grade_level" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="school_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grade_level" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Grade_Level1" Relationship="Self.Class_Grade_Level" FromRole="Class" ToRole="Grade_Level" />
+          <NavigationProperty Name="Teacher_In_Class" Relationship="Self.Teacher_In_Class_Class" FromRole="Class" ToRole="Teacher_In_Class" />
+          <NavigationProperty Name="Users" Relationship="Self.Student_In_Class" FromRole="Class" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="comment_ID" />
+            <PropertyRef Name="game_ID" />
+          </Key>
+          <Property Name="comment_ID" Type="Int32" Nullable="false" />
+          <Property Name="game_ID" Type="Int32" Nullable="false" />
+          <Property Name="Auther_ID" Type="Int32" Nullable="false" />
+          <Property Name="body" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.Comments_User" FromRole="Comments" ToRole="User" />
+          <NavigationProperty Name="Game" Relationship="Self.game_comments" FromRole="Comments" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="game_ID" />
+          </Key>
+          <Property Name="game_ID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="publish_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="creator_ID" Type="Int32" Nullable="false" />
+          <Property Name="amount_of_likes" Type="Int32" Nullable="false" />
+          <Property Name="grade_level" Type="Int32" Nullable="false" />
+          <Property Name="template_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="teacher_comment" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subject_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="Activities" Relationship="Self.Activities_Game" FromRole="Game" ToRole="Activities" />
+          <NavigationProperty Name="Comments" Relationship="Self.game_comments" FromRole="Game" ToRole="Comments" />
+          <NavigationProperty Name="Subject" Relationship="Self.Game_Subject" FromRole="Game" ToRole="Subjects" />
+          <NavigationProperty Name="Template" Relationship="Self.Game_Template" FromRole="Game" ToRole="Templates" />
+          <NavigationProperty Name="Template1" Relationship="Self.Game_Templates" FromRole="Game" ToRole="Templates" />
+          <NavigationProperty Name="User" Relationship="Self.Game_User" FromRole="Game" ToRole="User" />
+          <NavigationProperty Name="Measures_Values_In_Game" Relationship="Self.Measures_Values_In_Game_gameID" FromRole="Game" ToRole="Measures_Values_In_Game" />
+          <NavigationProperty Name="Categories" Relationship="Self.Game_In_Category" FromRole="Game" ToRole="Categories" />
+          <NavigationProperty Name="Categories1" Relationship="Self.Games_Categories" FromRole="Game" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Grade_Level">
+          <Key>
+            <PropertyRef Name="school_name" />
+            <PropertyRef Name="level" />
+          </Key>
+          <Property Name="school_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Classes" Relationship="Self.Class_Grade_Level" FromRole="Grade_Level" ToRole="Class" />
+          <NavigationProperty Name="School" Relationship="Self.Grade_Level_School" FromRole="Grade_Level" ToRole="School" />
+        </EntityType>
+        <EntityType Name="Measures_Values_In_Game">
+          <Key>
+            <PropertyRef Name="game_ID" />
+            <PropertyRef Name="subject_name" />
+            <PropertyRef Name="measure" />
+          </Key>
+          <Property Name="game_ID" Type="Int32" Nullable="false" />
+          <Property Name="subject_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="measure" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.Measures_Values_In_Game_gameID" FromRole="Measures_Values_In_Game" ToRole="Game" />
+          <NavigationProperty Name="Metrics_Rating" Relationship="Self.Measures_Values_In_Game_subject_masure" FromRole="Measures_Values_In_Game" ToRole="Metrics_Rating" />
+        </EntityType>
+        <EntityType Name="Metrics_Rating">
+          <Key>
+            <PropertyRef Name="subject_name" />
+            <PropertyRef Name="measure" />
+          </Key>
+          <Property Name="subject_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="measure" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="measrue_percent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Measures_Values_In_Game" Relationship="Self.Measures_Values_In_Game_subject_masure" FromRole="Metrics_Rating" ToRole="Measures_Values_In_Game" />
+          <NavigationProperty Name="Subject" Relationship="Self.Metrics_Rating_Subject" FromRole="Metrics_Rating" ToRole="Subjects" />
+        </EntityType>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Grade_Level" Relationship="Self.Grade_Level_School" FromRole="School" ToRole="Grade_Level" />
+          <NavigationProperty Name="Users" Relationship="Self.System_Administor" FromRole="School" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Categories_In_Subjects" Relationship="Self.Categories_In_Subjects_Subjects" FromRole="Subjects" ToRole="Categories_In_Subjects" />
+          <NavigationProperty Name="Games" Relationship="Self.Game_Subject" FromRole="Subjects" ToRole="Game" />
+          <NavigationProperty Name="Metrics_Rating" Relationship="Self.Metrics_Rating_Subject" FromRole="Subjects" ToRole="Metrics_Rating" />
+          <NavigationProperty Name="Teacher_In_Class" Relationship="Self.Teacher_In_Class_Subject" FromRole="Subjects" ToRole="Teacher_In_Class" />
+        </EntityType>
+        <EntityType Name="Teacher_In_Class">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="Int32" Nullable="false" />
+          <Property Name="subject" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="school_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grade_level" Type="Int32" Nullable="false" />
+          <Property Name="class_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="Self.Teacher_In_Class_Class" FromRole="Teacher_In_Class" ToRole="Class" />
+          <NavigationProperty Name="Subject1" Relationship="Self.Teacher_In_Class_Subject" FromRole="Teacher_In_Class" ToRole="Subjects" />
+          <NavigationProperty Name="User" Relationship="Self.Teacher_In_Class_User" FromRole="Teacher_In_Class" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.Game_Template" FromRole="Templates" ToRole="Game" />
+          <NavigationProperty Name="Games1" Relationship="Self.Game_Templates" FromRole="Templates" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Type_of_users">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.User_Type_of_users" FromRole="Type_of_users" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activities_Num" Type="Int32" Nullable="false" />
+          <Property Name="online" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activities" Relationship="Self.Activities_User_Receive" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities1" Relationship="Self.Activities_User_Send" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Comments" Relationship="Self.Comments_User" FromRole="User" ToRole="Comments" />
+          <NavigationProperty Name="Games" Relationship="Self.Game_User" FromRole="User" ToRole="Game" />
+          <NavigationProperty Name="Teacher_In_Class" Relationship="Self.Teacher_In_Class_User" FromRole="User" ToRole="Teacher_In_Class" />
+          <NavigationProperty Name="Type_of_users" Relationship="Self.User_Type_of_users" FromRole="User" ToRole="Type_of_users" />
+          <NavigationProperty Name="Class" Relationship="Self.Student_In_Class" FromRole="User" ToRole="Class" />
+          <NavigationProperty Name="Schools" Relationship="Self.System_Administor" FromRole="User" ToRole="School" />
+        </EntityType>
+        <Association Name="Activities_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activities_User_Receive">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="user_ID_receive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Activities_User_Send">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Activities" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="user_ID_send" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categories_In_Subjects_Categories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Categories_In_Subjects" Type="Self.Categories_In_Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Categories_In_Subjects">
+              <PropertyRef Name="subjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categories_In_Subjects_Subjects">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Categories_In_Subjects" Type="Self.Categories_In_Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Categories_In_Subjects">
+              <PropertyRef Name="subjectName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Class_Grade_Level">
+          <End Role="Grade_Level" Type="Self.Grade_Level" Multiplicity="1" />
+          <End Role="Class" Type="Self.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade_Level">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="level" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="school_name" />
+              <PropertyRef Name="grade_level" />
+              <PropertyRef Name="class_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Comments_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Auther_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="game_comments">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Subject">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Template">
+          <End Role="Templates" Type="Self.Template" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="template_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_Templates">
+          <End Role="Templates" Type="Self.Template" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="template_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="creator_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Measures_Values_In_Game_gameID">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Measures_Values_In_Game" Type="Self.Measures_Values_In_Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="game_ID" />
+            </Principal>
+            <Dependent Role="Measures_Values_In_Game">
+              <PropertyRef Name="game_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Grade_Level_School">
+          <End Role="School" Type="Self.School" Multiplicity="1" />
+          <End Role="Grade_Level" Type="Self.Grade_Level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="School">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Grade_Level">
+              <PropertyRef Name="school_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Measures_Values_In_Game_subject_masure">
+          <End Role="Metrics_Rating" Type="Self.Metrics_Rating" Multiplicity="1" />
+          <End Role="Measures_Values_In_Game" Type="Self.Measures_Values_In_Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metrics_Rating">
+              <PropertyRef Name="subject_name" />
+              <PropertyRef Name="measure" />
+            </Principal>
+            <Dependent Role="Measures_Values_In_Game">
+              <PropertyRef Name="subject_name" />
+              <PropertyRef Name="measure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Metrics_Rating_Subject">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Metrics_Rating" Type="Self.Metrics_Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Metrics_Rating">
+              <PropertyRef Name="subject_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_Subject">
+          <End Role="Subjects" Type="Self.Subject" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Teacher_In_Class_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Teacher_In_Class" Type="Self.Teacher_In_Class" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="user_ID" />
+            </Principal>
+            <Dependent Role="Teacher_In_Class">
+              <PropertyRef Name="user_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="User_Type_of_users">
+          <End Role="Type_of_users" Type="Self.Type_of_users" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_users">
+              <PropertyRef Name="name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Game_In_Category">
+          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+        </Association>
+        <Association Name="Games_Categories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+        </Association>
+        <Association Name="Student_In_Class">
+          <End Role="Class" Type="Self.Class" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <Association Name="System_Administor">
+          <End Role="School" Type="Self.School" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CreatoshDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="Self.Activity" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Categories_In_Subjects" EntityType="Self.Categories_In_Subjects" />
+          <EntitySet Name="Classes" EntityType="Self.Class" />
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="Grade_Level" EntityType="Self.Grade_Level" />
+          <EntitySet Name="Measures_Values_In_Game" EntityType="Self.Measures_Values_In_Game" />
+          <EntitySet Name="Metrics_Rating" EntityType="Self.Metrics_Rating" />
+          <EntitySet Name="Schools" EntityType="Self.School" />
+          <EntitySet Name="Subjects" EntityType="Self.Subject" />
+          <EntitySet Name="Teacher_In_Class" EntityType="Self.Teacher_In_Class" />
+          <EntitySet Name="Templates" EntityType="Self.Template" />
+          <EntitySet Name="Type_of_users" EntityType="Self.Type_of_users" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="Activities_Game" Association="Self.Activities_Game">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Activities_User_Receive" Association="Self.Activities_User_Receive">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Activities_User_Send" Association="Self.Activities_User_Send">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Activities" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="Categories_In_Subjects_Categories" Association="Self.Categories_In_Subjects_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Categories_In_Subjects" EntitySet="Categories_In_Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="Categories_In_Subjects_Subjects" Association="Self.Categories_In_Subjects_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Categories_In_Subjects" EntitySet="Categories_In_Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="Class_Grade_Level" Association="Self.Class_Grade_Level">
+            <End Role="Grade_Level" EntitySet="Grade_Level" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_Class" Association="Self.Teacher_In_Class_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="Comments_User" Association="Self.Comments_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="game_comments" Association="Self.game_comments">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Subject" Association="Self.Game_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Template" Association="Self.Game_Template">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Game_Templates" Association="Self.Game_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Game_User" Association="Self.Game_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Measures_Values_In_Game_gameID" Association="Self.Measures_Values_In_Game_gameID">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Measures_Values_In_Game" EntitySet="Measures_Values_In_Game" />
+          </AssociationSet>
+          <AssociationSet Name="Grade_Level_School" Association="Self.Grade_Level_School">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Grade_Level" EntitySet="Grade_Level" />
+          </AssociationSet>
+          <AssociationSet Name="Measures_Values_In_Game_subject_masure" Association="Self.Measures_Values_In_Game_subject_masure">
+            <End Role="Metrics_Rating" EntitySet="Metrics_Rating" />
+            <End Role="Measures_Values_In_Game" EntitySet="Measures_Values_In_Game" />
+          </AssociationSet>
+          <AssociationSet Name="Metrics_Rating_Subject" Association="Self.Metrics_Rating_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Metrics_Rating" EntitySet="Metrics_Rating" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_Subject" Association="Self.Teacher_In_Class_Subject">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="Teacher_In_Class_User" Association="Self.Teacher_In_Class_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Teacher_In_Class" EntitySet="Teacher_In_Class" />
+          </AssociationSet>
+          <AssociationSet Name="User_Type_of_users" Association="Self.User_Type_of_users">
+            <End Role="Type_of_users" EntitySet="Type_of_users" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="Game_In_Category" Association="Self.Game_In_Category">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Games_Categories" Association="Self.Games_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="Student_In_Class" Association="Self.Student_In_Class">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="System_Administor" Association="Self.System_Administor">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="CreatoshDBEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="Model.Activity">
+              <MappingFragment StoreEntitySet="Activities">
+                <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+                <ScalarProperty Name="user_ID_send" ColumnName="user_ID_send" />
+                <ScalarProperty Name="user_ID_receive" ColumnName="user_ID_receive" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="read" ColumnName="read" />
+                <ScalarProperty Name="response" ColumnName="response" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories_In_Subjects">
+            <EntityTypeMapping TypeName="Model.Categories_In_Subjects">
+              <MappingFragment StoreEntitySet="Categories_In_Subjects">
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="subjectName" ColumnName="subjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="Model.Class">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+                <ScalarProperty Name="grade_level" ColumnName="grade_level" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="Model.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="comment_ID" ColumnName="comment_ID" />
+                <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+                <ScalarProperty Name="Auther_ID" ColumnName="Auther_ID" />
+                <ScalarProperty Name="body" ColumnName="body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="Model.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="publish_date" ColumnName="publish_date" />
+                <ScalarProperty Name="creator_ID" ColumnName="creator_ID" />
+                <ScalarProperty Name="amount_of_likes" ColumnName="amount_of_likes" />
+                <ScalarProperty Name="grade_level" ColumnName="grade_level" />
+                <ScalarProperty Name="template_name" ColumnName="template_name" />
+                <ScalarProperty Name="teacher_comment" ColumnName="teacher_comment" />
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grade_Level">
+            <EntityTypeMapping TypeName="Model.Grade_Level">
+              <MappingFragment StoreEntitySet="Grade_Level">
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+                <ScalarProperty Name="level" ColumnName="level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Measures_Values_In_Game">
+            <EntityTypeMapping TypeName="Model.Measures_Values_In_Game">
+              <MappingFragment StoreEntitySet="Measures_Values_In_Game">
+                <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+                <ScalarProperty Name="measure" ColumnName="measure" />
+                <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metrics_Rating">
+            <EntityTypeMapping TypeName="Model.Metrics_Rating">
+              <MappingFragment StoreEntitySet="Metrics_Rating">
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+                <ScalarProperty Name="measure" ColumnName="measure" />
+                <ScalarProperty Name="measrue_percent" ColumnName="measrue_percent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Schools">
+            <EntityTypeMapping TypeName="Model.School">
+              <MappingFragment StoreEntitySet="School">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="Model.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher_In_Class">
+            <EntityTypeMapping TypeName="Model.Teacher_In_Class">
+              <MappingFragment StoreEntitySet="Teacher_In_Class">
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="school_name" ColumnName="school_name" />
+                <ScalarProperty Name="grade_level" ColumnName="grade_level" />
+                <ScalarProperty Name="class_name" ColumnName="class_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Templates">
+            <EntityTypeMapping TypeName="Model.Template">
+              <MappingFragment StoreEntitySet="Templates">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_of_users">
+            <EntityTypeMapping TypeName="Model.Type_of_users">
+              <MappingFragment StoreEntitySet="Type_of_users">
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="activities_Num" ColumnName="activities_Num" />
+                <ScalarProperty Name="online" ColumnName="online" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Game_In_Category" TypeName="Model.Game_In_Category" StoreEntitySet="Game_In_Category">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="name" ColumnName="categoriesName" />
+            </EndProperty>
+            <EndProperty Name="Game">
+              <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Games_Categories" TypeName="Model.Games_Categories" StoreEntitySet="Games_Categories">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="name" ColumnName="categoriesName" />
+            </EndProperty>
+            <EndProperty Name="Game">
+              <ScalarProperty Name="game_ID" ColumnName="game_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Student_In_Class" TypeName="Model.Student_In_Class" StoreEntitySet="Student_In_Class">
+            <EndProperty Name="Class">
+              <ScalarProperty Name="school_name" ColumnName="school_name" />
+              <ScalarProperty Name="grade_level" ColumnName="grade_level" />
+              <ScalarProperty Name="name" ColumnName="class_name" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="System_Administor" TypeName="Model.System_Administor" StoreEntitySet="System_Administor">
+            <EndProperty Name="School">
+              <ScalarProperty Name="name" ColumnName="school_name" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

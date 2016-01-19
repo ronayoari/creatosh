@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatoshDAL", "CreatoshDAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatoshDAL.Tests", "CreatoshDAL.Tests\CreatoshDAL.Tests.csproj", "{58944124-86BE-4D48-9F74-43B727EAD191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFAzureDALServiceWebRole", "WCFAzureDALServiceWebRole\WCFAzureDALServiceWebRole.csproj", "{AF33F136-5E1B-4284-823A-5DF0D9B47479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFAzureDALServiceWebRole.Tests", "WCFAzureDALServiceWebRole.Tests\WCFAzureDALServiceWebRole.Tests.csproj", "{1442B104-1752-418A-96CC-8857605BCE55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{58944124-86BE-4D48-9F74-43B727EAD191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58944124-86BE-4D48-9F74-43B727EAD191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58944124-86BE-4D48-9F74-43B727EAD191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF33F136-5E1B-4284-823A-5DF0D9B47479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF33F136-5E1B-4284-823A-5DF0D9B47479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF33F136-5E1B-4284-823A-5DF0D9B47479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF33F136-5E1B-4284-823A-5DF0D9B47479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1442B104-1752-418A-96CC-8857605BCE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1442B104-1752-418A-96CC-8857605BCE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1442B104-1752-418A-96CC-8857605BCE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1442B104-1752-418A-96CC-8857605BCE55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

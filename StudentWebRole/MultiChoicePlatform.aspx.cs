@@ -1,5 +1,8 @@
 ﻿using System.Net;
 using Microsoft.WindowsAzure.Storage.Blob.Protocol;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace StudentWebRole
 {
@@ -81,6 +84,20 @@ namespace StudentWebRole
             }
             else
                 status.Text = "No image file";
+        }
+
+        private void CreateTable(string tableName)
+        {
+            // Retrieve the storage account from the connection string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+                CloudConfigurationManager.GetSetting("StorageConnectionString"));
+
+            // Create the table client.
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            // Create the table if it doesn't exist.
+            CloudTable table = tableClient.GetTableReference(tableName);
+            table.CreateIfNotExists();
         }
 
         protected void OnBlobDataBound(object sender, ListViewItemEventArgs e)
@@ -177,7 +194,7 @@ namespace StudentWebRole
 
             var account = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
             var client = account.CreateCloudBlobClient();
-            return client.GetContainerReference(RoleEnvironment.GetConfigurationSettingValue("ContainerName") + "-photo");
+            return client.GetContainerReference(RoleEnvironment.GetConfigurationSettingValue("ContainerName"));
         }
 
 
@@ -195,6 +212,7 @@ namespace StudentWebRole
             blob.Properties.ContentType = contentType;
             // Create some metadata for this image
             blob.Metadata.Add("Id", id);
+            blob.Metadata.Add("Template", "MultiChoicePlatform");
             blob.Metadata.Add("Username", String.IsNullOrEmpty(user) ? "unknown" : user);
             blob.Metadata.Add("CorrectAnswer", String.IsNullOrEmpty(correctAnswer) ? "unknown" : correctAnswer);
             blob.Metadata.Add("IncorrectAnswer1", String.IsNullOrEmpty(incorrectAnswer1) ? "unknown" : incorrectAnswer1);

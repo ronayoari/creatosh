@@ -59,4 +59,20 @@
       <InputEndpoint name="Endpoint1" protocol="http" port="8081" />
     </Endpoints>
   </WebRole>
+  <WebRole name="WCFAzureDALServiceWebRole" vmsize="Small">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="Endpoint1" endpointName="Endpoint1" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="StorageConnectionString" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="8082" />
+    </Endpoints>
+  </WebRole>
 </ServiceDefinition>

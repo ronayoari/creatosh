@@ -78,6 +78,14 @@
       <RoleName>TeacherWebRole</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\WCFAzureDALServiceWebRole\WCFAzureDALServiceWebRole.csproj">
+      <Name>WCFAzureDALServiceWebRole</Name>
+      <Project>{af33f136-5e1b-4284-823a-5df0d9b47479}</Project>
+      <Private>True</Private>
+      <RoleType>Web</RoleType>
+      <RoleName>WCFAzureDALServiceWebRole</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CreateGameWorkerRoleContent\" />
@@ -85,6 +93,7 @@
     <Folder Include="RankUpdaterWorkerRoleContent\" />
     <Folder Include="StudentWebRoleContent\" />
     <Folder Include="TeacherWebRoleContent\" />
+    <Folder Include="WCFAzureDALServiceWebRoleContent\" />
   </ItemGroup>
   <ItemGroup>
     <DiagnosticsConfiguration Include="CreateGameWorkerRoleContent\diagnostics.wadcfgx" />
@@ -92,6 +101,7 @@
     <DiagnosticsConfiguration Include="RankUpdaterWorkerRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="StudentWebRoleContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="TeacherWebRoleContent\diagnostics.wadcfgx" />
+    <DiagnosticsConfiguration Include="WCFAzureDALServiceWebRoleContent\diagnostics.wadcfgx" />
   </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>

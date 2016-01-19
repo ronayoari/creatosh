@@ -65,42 +65,49 @@ namespace CreateGameWorkerRole
         private async Task RunAsync(CancellationToken cancellationToken)
         {
             Trace.WriteLine("Album_WorkerRole entry point called", "Information");
-
-            // initialize the account information 
-            var storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("DataConnectionString"));
-
-            // retrieve a reference to the messages queue 
-            var queueClient = storageAccount.CreateCloudQueueClient();
-            var queue = queueClient.GetQueueReference("photoresize");
-            // retrieve messages and write them to the development fabric log 
-            while (true)
+            try
             {
-                if (queue.Exists())
+                // initialize the account information 
+                string dataConnectionString = CloudConfigurationManager.GetSetting("DataConnectionString");
+                var storageAccount = CloudStorageAccount.Parse(dataConnectionString);
+                // retrieve a reference to the messages queue 
+                var queueClient = storageAccount.CreateCloudQueueClient();
+                var queue = queueClient.GetQueueReference("photoresize");
+                // retrieve messages and write them to the development fabric log 
+                while (true)
                 {
-                    var msg = queue.GetMessage();
-
-                    if (msg != null)
+                    if (queue.Exists())
                     {
-                        Trace.TraceInformation(string.Format("Message '{0}' processed.", msg.AsString));
+                        var msg = queue.GetMessage();
 
-                        Image.GetThumbnailImageAbort myCallback = new Image.GetThumbnailImageAbort(Callback);
-                        //get photo as stream
-                        MemoryStream memStream = new MemoryStream();
+                        if (msg != null)
+                        {
+                            Trace.TraceInformation(string.Format("Message '{0}' processed.", msg.AsString));
 
-                        char[] delimiterChar = {','};
-                        string message = msg.AsString;
-                        string[] blobs = message.Split(delimiterChar);
-                        HandelBlob(blobs[0], myCallback, memStream);
-                        HandelBlob(blobs[1], myCallback, memStream);
-                        queue.DeleteMessage(msg);
+                            Image.GetThumbnailImageAbort myCallback = new Image.GetThumbnailImageAbort(Callback);
+                            //get photo as stream
+                            MemoryStream memStream = new MemoryStream();
+
+                            char[] delimiterChar = { ',' };
+                            string message = msg.AsString;
+                            string[] blobs = message.Split(delimiterChar);
+                            HandelBlob(blobs[0], myCallback, memStream);
+                            HandelBlob(blobs[1], myCallback, memStream);
+                            queue.DeleteMessage(msg);
+                        }
+                    }
+                    else
+                    {
+                        //Thread.Sleep(1000);
+                        await Task.Delay(1000);
                     }
                 }
-                else
-                {
-                    //Thread.Sleep(1000);
-                    await Task.Delay(1000);
-                }
             }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.Message);
+            }
+            
         }
 
         private void HandelBlob(string msg, Image.GetThumbnailImageAbort myCallback, MemoryStream memStream)
@@ -153,7 +160,7 @@ namespace CreateGameWorkerRole
             }
             catch (Exception ex)
             {
-
+                Trace.TraceError(ex.Message);
             }
 
 

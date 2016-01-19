@@ -10,7 +10,7 @@ namespace CreatoshDAL
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IServiceGame
     {
 
         /*
@@ -20,11 +20,13 @@ namespace CreatoshDAL
          * @param publish_date - the date the game was published.
          * @param creator_ID - the id of the creator of the game.
          * @param grade_level - the grade level of the game.
+         * @param template_name
          * @param subject_name - the subject of the application.
          * @return GameID. ERROR message if operation failed.
          * */
         [OperationContract]
-        string AddGame(string name, string description, string publish_date, string creator_ID, string grade_level, string subject_name);
+        string AddGame(string name, string description, DateTime publish_date, int creator_ID,
+            int grade_level, string template_name, string subject_name);
 
         /*
          * Update game details and set to publish for others to see.
@@ -32,10 +34,12 @@ namespace CreatoshDAL
          * @param categories - the categories that was decided by the teacher.
          * @param teacher_comment - the comment the teacher wrote on the game.
          * @return SUCCESS or ERROR message.
-         * */
+         * 
+         * This function update thr status fild in Game to 'Publish'
+         */
         [OperationContract]
-        string PublishGame(string gameID, string[] categories, string teacher_comment);
-        
+        string PublishGame(int gameID, string[] categories, string teacher_comment);
+
         /*
          * Update game details and set to return to creator.
          * @param gameID - game ID.
@@ -45,7 +49,7 @@ namespace CreatoshDAL
          * @return SUCCESS or ERROR message.
          * */
         [OperationContract]
-        string ReturnGameForReCreate(string gameID, string teacher_comment, string[] metrics, string[] values);
+        string ReturnGameForReCreate(int gameID, string teacher_comment, string[] metrics, int[] values);
 
         /*
          * Update game details and set to be checked again by the teacher.
@@ -56,11 +60,11 @@ namespace CreatoshDAL
          * @return SUCCESS or ERROR message.
          * */
         [OperationContract]
-        string ReAddGame(string gameID, string name, string description, string publish_date);
-        
+        string ReAddGame(int gameID, string name, string description, DateTime publish_date);
+
+
+
+
+        // Use a data contract as illustrated in the sample below to add composite types to service operations.
     }
-
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-
 }

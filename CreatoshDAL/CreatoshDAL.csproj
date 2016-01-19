@@ -39,6 +39,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>True</Private>
@@ -46,6 +54,8 @@
     <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -65,29 +75,115 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="ServiceGame.svc" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="Activity.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="Categories_In_Subjects.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comment.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Creatosh_DB_Entities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Creatosh_DB_Entities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Creatosh_DB_Entities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Creatosh_DB_Entities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Creatosh_DB_Entities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Game.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Grade_Level.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IServiceUser.cs" />
+    <Compile Include="Measures_Values_In_Game.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Metrics_Rating.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="School.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceGame.svc.cs">
+      <DependentUpon>ServiceGame.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IServiceGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceUser.svc.cs">
+      <DependentUpon>ServiceUser.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Subject.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Teacher_In_Class.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Type_of_users.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>Creatosh_DB_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ServiceUser.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+    <EntityDeploy Include="Creatosh_DB_Entities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Creatosh_DB_Entities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Creatosh_DB_Entities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Creatosh_DB_Entities.edmx</DependentUpon>
+      <LastGenOutput>Creatosh_DB_Entities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Creatosh_DB_Entities.edmx.diagram">
+      <DependentUpon>Creatosh_DB_Entities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Creatosh_DB_Entities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Creatosh_DB_Entities.edmx</DependentUpon>
+      <LastGenOutput>Creatosh_DB_Entities.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

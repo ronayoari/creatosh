@@ -49,20 +49,34 @@ namespace StudentWebRole
 
         protected void upload_Click(object sender, EventArgs e)
         {
-            if (imageFile.HasFile)
+            if (imageFile1.HasFile)
             {
-                status.Text = "Inserted [" + imageFile.FileName + "] - Content Type [" +
-                imageFile.PostedFile.ContentType + "] - Length [" +
-                imageFile.PostedFile.ContentLength + "]";
-                this.SaveImage(
+                status.Text = "Inserted [" + imageFile1.FileName + "] - Content Type [" +
+                imageFile1.PostedFile.ContentType + "] - Length [" +
+                imageFile1.PostedFile.ContentLength + "]";
+                string message = "";
+                message = this.SaveImage(
                 Guid.NewGuid().ToString(),
-                correctAnswer.Text,
-                wrongAnswer1.Text,
-                wrongAnswer2.Text,
-                wrongAnswer3.Text,
-                imageFile.PostedFile.ContentType,
-                imageFile.PostedFile.InputStream
+                "user",
+                correctAnswer1.Text,
+                wrongAnswer11.Text,
+                wrongAnswer21.Text,
+                wrongAnswer31.Text,
+                imageFile1.PostedFile.ContentType,
+                imageFile1.PostedFile.InputStream
                 );
+                message += ",";
+                message += this.SaveImage(
+                Guid.NewGuid().ToString(),
+                "user",
+                correctAnswer2.Text,
+                wrongAnswer12.Text,
+                wrongAnswer22.Text,
+                wrongAnswer32.Text,
+                imageFile2.PostedFile.ContentType,
+                imageFile2.PostedFile.InputStream
+                );
+                sendToQueue(message);
                 RefreshGallery();
             }
             else
@@ -174,13 +188,14 @@ namespace StudentWebRole
             images.DataBind();
         }
 
-        private void SaveImage(string id, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3, string contentType, Stream fiileStream)
+        private string SaveImage(string id, string user, string correctAnswer, string incorrectAnswer1, string incorrectAnswer2, string incorrectAnswer3, string contentType, Stream fiileStream)
         {
             // Create a blob in container and upload image bytes to it
             var blob = this.GetContainer().GetBlockBlobReference(correctAnswer);
             blob.Properties.ContentType = contentType;
             // Create some metadata for this image
             blob.Metadata.Add("Id", id);
+            blob.Metadata.Add("Username", String.IsNullOrEmpty(user) ? "unknown" : user);
             blob.Metadata.Add("CorrectAnswer", String.IsNullOrEmpty(correctAnswer) ? "unknown" : correctAnswer);
             blob.Metadata.Add("IncorrectAnswer1", String.IsNullOrEmpty(incorrectAnswer1) ? "unknown" : incorrectAnswer1);
             blob.Metadata.Add("IncorrectAnswer2", String.IsNullOrEmpty(incorrectAnswer2) ? "unknown" : incorrectAnswer2);
@@ -189,7 +204,7 @@ namespace StudentWebRole
             blob.UploadFromStream(fiileStream);
             blob.SetMetadata();
             //send to queue 
-            sendToQueue(correctAnswer);
+            return correctAnswer;
         }
 
         #endregion

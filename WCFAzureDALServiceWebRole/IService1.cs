@@ -53,7 +53,34 @@ namespace WCFAzureDALServiceWebRole
             }
 
             public GameSequenceEntity() { }
-            
+
+            public static GameSequenceEntity GameSequenceEntityXFactory(GameSequenceEntityX entity)
+            {
+                GameSequenceEntity gameSeq = null;
+                if (entity.Template.Equals("None"))
+                {
+                    gameSeq = new GameSequenceEntity(entity.GameID, entity.Sequence, entity.Template);
+                }
+                else if (entity.Template.Equals("Multiple Choice"))
+                {
+                    if (entity is MultiChoiceSequenceEntityX)
+                    {
+                        var multiEntity = (MultiChoiceSequenceEntityX)entity;
+                        gameSeq = new MultiChoiceSequenceEntity(multiEntity.GameID, multiEntity.Sequence, multiEntity.BlobName,
+                            multiEntity.Question, multiEntity.CorrectAnswer, multiEntity.WrongAnswer1, multiEntity.WrongAnswer2, multiEntity.WrongAnswer3);
+                    }
+                    else
+                    {
+                        gameSeq = null;
+                    }
+                }
+                else
+                {
+                    gameSeq = null;
+                }
+                return gameSeq;
+            }
+
             public string Template { get; set; }
         }
 

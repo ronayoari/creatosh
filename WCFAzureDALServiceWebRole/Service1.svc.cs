@@ -1,15 +1,17 @@
-﻿using Microsoft.WindowsAzure;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
-using Microsoft.WindowsAzure.Storage.Table.DataServices;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Services.Client;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Table.DataServices;
+using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace WCFAzureDALServiceWebRole
 {
@@ -17,6 +19,26 @@ namespace WCFAzureDALServiceWebRole
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+
+        EntityResolver<GameSequenceEntity> gameSeqResolver = (partitionKey, rowKey, timestamp, properties, etag) =>
+        {
+            var type = properties["Template"].StringValue;
+            GameSequenceEntity entity = null;
+            switch (type)
+            {
+                case "None": entity = new GameSequenceEntity(); break;
+                case "Multiple Choice": entity = new MultiChoiceSequenceEntity(); break;
+                default: return null; // throw new NotSupportedException(string.Format("Unknown Template {0}", type));
+            };
+
+            entity.PartitionKey = partitionKey;
+            entity.RowKey = rowKey;
+            entity.Timestamp = timestamp;
+            entity.ETag = etag;
+            entity.ReadEntity(properties, null);
+
+            return entity;
+        };
 
         public string CreateTable(string tableName)
         {
@@ -69,7 +91,7 @@ namespace WCFAzureDALServiceWebRole
         {
             List<GameSequenceEntity> gamesSequences = new List<GameSequenceEntity>();
             foreach(GameSequenceEntityX gameSeq in gameSeqs){
-                gamesSequences.Add(new GameSequenceEntity(gameSeq));
+                gamesSequences.Add(GameSequenceEntity.GameSequenceEntityXFactory(gameSeq));
             }
             CloudStorageAccount storageAccount = RetrieveStorageAccountFromConnectionString();
 
@@ -103,7 +125,7 @@ namespace WCFAzureDALServiceWebRole
         public string AddEntityToTable(GameSequenceEntityX gameSeq, string tableName)
         {
 
-            GameSequenceEntity gameSequence = new GameSequenceEntity(gameSeq);
+            GameSequenceEntity gameSequence = GameSequenceEntity.GameSequenceEntityXFactory(gameSeq);
             // Retrieve the storage account from the connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -147,15 +169,19 @@ namespace WCFAzureDALServiceWebRole
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
-            List<GameSequenceEntity> gameSeqs = new List<GameSequenceEntity>();
+            List<GameSequenceEntityX> gameSeqs = new List<GameSequenceEntityX>();
             try
             {
-                // Construct the query operation for all customer entities where PartitionKey=gameID.
-                TableQuery<GameSequenceEntity> query = new TableQuery<GameSequenceEntity>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, gameID));
-                
-                foreach (GameSequenceEntity entity in table.ExecuteQuery(query))
+
+                // Create a retrieve operation that takes a customer entity.
+                string queryString = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, gameID);
+                TableQuery<GameSequenceEntity> query = new TableQuery<GameSequenceEntity>().Where(queryString);
+                var retrievedResult = table.ExecuteQuery(query, gameSeqResolver, null, null);
+                // Execute the retrieve operation.
+                List<GameSequenceEntityX> result = new List<GameSequenceEntityX>();
+                foreach (GameSequenceEntity gse in retrievedResult)
                 {
-                    gameSeqs.Add(entity);
+                    gameSeqs.Add(GameSequenceEntityX.GameSequenceEntityXFactory(gse as GameSequenceEntity));
                 }
 
             }
@@ -163,12 +189,7 @@ namespace WCFAzureDALServiceWebRole
             {
                 Trace.TraceInformation(string.Format("ERROR - with message: {0}", e.Message.ToString()));
             }
-            List<GameSequenceEntityX> entities = new List<GameSequenceEntityX>();
-            foreach (GameSequenceEntity entity in gameSeqs)
-            {
-                entities.Add(GameSequenceEntityX.GameSequenceEntityXFactory(entity));
-            }
-            return entities;
+            return gameSeqs;
         }
 
         public GameSequenceEntityX RetrieveGameSequenceEntities(string gameID, string seq, string tableName)
@@ -185,32 +206,39 @@ namespace WCFAzureDALServiceWebRole
                 CloudTable table = tableClient.GetTableReference(tableName);
 
                 // Create a retrieve operation that takes a customer entity.
-                TableOperation retrieveOperation = TableOperation.Retrieve<GameSequenceEntity>(gameID, seq);
+                string queryString = TableQuery.CombineFilters(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, gameID),
+                                               TableOperators.And,
+                                               TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.Equal, seq));
 
+                TableQuery<GameSequenceEntity> query = new TableQuery<GameSequenceEntity>().Where(queryString);
+                var retrievedResult = table.ExecuteQuery(query, gameSeqResolver, null, null);
                 // Execute the retrieve operation.
-                TableResult retrievedResult = table.Execute(retrieveOperation);
                 GameSequenceEntityX gameSequence = null;
-                if (retrievedResult != null)
+                List<GameSequenceEntityX> result = new List<GameSequenceEntityX>();
+                foreach (GameSequenceEntity gse in retrievedResult)
                 {
-                    gameSequence = GameSequenceEntityX.GameSequenceEntityXFactory((GameSequenceEntity)retrievedResult.Result);
+                    result.Add(GameSequenceEntityX.GameSequenceEntityXFactory(gse as GameSequenceEntity));
                 }
-                else
-                {
-                    Trace.TraceInformation("Could not find game sequence");
-                }
-
+                if(result.Count == 1)
+                    gameSequence = result.ElementAt<GameSequenceEntityX>(0);
+                
                 return gameSequence;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Trace.TraceError(ex.Message);
                 return null;
             }
         }
 
+        private GameSequenceEntity RetrieveGameSequenceEntities()
+        {
+            return null;
+        }
+
         public string UpdateEntityInTable(GameSequenceEntityX gameSeq, string tableName)
         {
-            GameSequenceEntity gameSequence = new GameSequenceEntity(gameSeq);
+            GameSequenceEntity gameSequence = GameSequenceEntity.GameSequenceEntityXFactory(gameSeq);
 
             CloudStorageAccount storageAccount = RetrieveStorageAccountFromConnectionString();
 
@@ -219,12 +247,6 @@ namespace WCFAzureDALServiceWebRole
 
             // Create the CloudTable object that represents the "people" table.
             CloudTable table = tableClient.GetTableReference(tableName);
-
-            // Create a retrieve operation that takes a customer entity.
-            TableOperation retrieveOperation = TableOperation.Retrieve<GameSequenceEntity>(gameSequence.PartitionKey, gameSequence.RowKey);
-
-            // Execute the operation.
-            TableResult retrievedResult = table.Execute(retrieveOperation);
 
             // Create the InsertOrReplace TableOperation.
             TableOperation insertOrReplaceOperation = TableOperation.InsertOrReplace(gameSequence);

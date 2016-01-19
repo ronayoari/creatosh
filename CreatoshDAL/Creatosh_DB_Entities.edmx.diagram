@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="59863a07896f4a63952d1d443aaf08c0" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Activity" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Categories_In_Subjects" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Class" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Comment" Width="1.5" PointX="11.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Game" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Grade_Level" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Measures_Values_In_Game" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Metrics_Rating" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.School" Width="1.5" PointX="1.5" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Subject" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Teacher_In_Class" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Template" Width="1.5" PointX="3.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Type_of_users" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.Activities_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Activities_User_Receive" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Activities_User_Send" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Categories_In_Subjects_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Categories_In_Subjects_Subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Class_Grade_Level" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Teacher_In_Class_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Comments_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.game_comments" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Game_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Game_Template" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Game_Templates" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Game_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Measures_Values_In_Game_gameID" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Grade_Level_School" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Measures_Values_In_Game_subject_masure" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Metrics_Rating_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Teacher_In_Class_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Teacher_In_Class_User" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.User_Type_of_users" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Game_In_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Games_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.Student_In_Class" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.System_Administor" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
